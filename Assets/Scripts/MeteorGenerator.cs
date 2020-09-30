@@ -15,21 +15,23 @@ public class MeteorGenerator : MonoBehaviour
     bool IntensityStablisation, MaxIntensity;
     void Start()
     {
-        if (!MaxIntensity)
-        {
-            intensity = StartingIntensity;
-        }
-        if (GameObject.FindGameObjectsWithTag("Meteor").Length < MaxMeteors)
-        {
-            spawnTimer = StartingSpawnTime / intensity;
-        }
+
+        intensity = StartingIntensity;
+        spawnTimer = StartingSpawnTime / intensity;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        spawnTimer += Time.deltaTime;
-        intensity += Time.deltaTime * DifficultyIncreaseSpeed;
+        if (GameObject.FindGameObjectsWithTag("Meteor").Length < MaxMeteors)
+        {
+            spawnTimer += Time.deltaTime;
+        }
+        if (!MaxIntensity)
+        {
+            intensity += Time.deltaTime * DifficultyIncreaseSpeed;
+        }
         if(intensity > 3 && !IntensityStablisation)
         {
             DifficultyIncreaseSpeed = DifficultyIncreaseSpeed / 2;
@@ -43,7 +45,7 @@ public class MeteorGenerator : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        //Spawn and Meteor every few seconds with randomly generated power
+        //Spawn and Meteor every few seconds with randomly generated speed, location, size
         if(spawnTimer > StartingSpawnTime/intensity)
         {
             int Roll = Random.Range(0, Meteor.Count);

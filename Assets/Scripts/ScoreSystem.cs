@@ -14,6 +14,6 @@ public class ScoreSystem : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        GetComponent<Text>().text = "SCORE: " + Score.ToString("D3");
+        GetComponent<Text>().text = "SCORE: " + Score.ToString("D4");
     }
 }

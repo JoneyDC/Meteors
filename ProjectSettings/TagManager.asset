@@ -6,6 +6,9 @@ TagManager:
   tags:
   - Meteor
   - ScoreBoard
+  - HighScore
+  - ScoreSave
+  - NameStore
   layers:
   - Default
   - TransparentFX

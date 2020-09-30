@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player_Move : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class Player_Move : MonoBehaviour
     public GameObject projectile, GameOverCanvas;
     public Transform ShotPoint;
     public float Speed;
+    [SerializeField] GameObject HighScore, ScoreBoard;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -49,6 +51,7 @@ public class Player_Move : MonoBehaviour
         if(collision.gameObject.CompareTag("Meteor"))
         {
             GameOverCanvas.SetActive(true);
+            HighScore.GetComponent<HighscoreTable>().AddHighscoreEntry(ScoreBoard.GetComponent<ScoreSystem>().Score, GameObject.FindGameObjectWithTag("NameStore").GetComponent<Name_Store>().Name);
             Destroy(gameObject);
         }
     }
