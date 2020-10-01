@@ -6,21 +6,15 @@ using UnityEngine.Tilemaps;
 public class Projectile : MonoBehaviour
 {
     Rigidbody2D rb;
-    public float Speed;
+    public float Speed, Duration;
+    public List<AudioClip> clip;
 
-    float leftConstraint;
-    float rightConstraint;
-    float topConstraint;
-    float bottomConstraint;
+    float Timer;
     GameObject ScoreBoard;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        leftConstraint = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 0)).x;
-        rightConstraint = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 0)).x;
-        topConstraint = Camera.main.ScreenToWorldPoint(new Vector3(0, Screen.height, 0)).y;
-        bottomConstraint = Camera.main.ScreenToWorldPoint(new Vector3(0, 0)).y;
         ScoreBoard = GameObject.FindGameObjectWithTag("ScoreBoard");
     }
 
@@ -31,16 +25,20 @@ public class Projectile : MonoBehaviour
     }
     private void Update()
     {
-        if (transform.position.x > rightConstraint || transform.position.x < leftConstraint || transform.position.y > topConstraint || transform.position.y < bottomConstraint)
+        Timer += Time.deltaTime;
+        if(Timer> Duration)
         {
             Destroy(gameObject);
         }
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Meteor"))
         {
             ScoreBoard.GetComponent<ScoreSystem>().Score += collision.gameObject.GetComponent<Meteor>().Points;
+            int roll = UnityEngine.Random.Range(0, 3);
+            AudioSource.PlayClipAtPoint(clip[roll], Vector3.zero);
             Destroy(collision.gameObject);
             Destroy(gameObject);
         }

@@ -10,6 +10,12 @@ public class Name_Store : MonoBehaviour
     {
         DontDestroyOnLoad(this.gameObject);
     }
+    private void OnLevelWasLoaded(int level)
+    {
+        GetComponent<AudioSource>().pitch = 1;
+        GetComponent<AudioSource>().Stop();
+        GetComponent<AudioSource>().Play();
+    }
 
 
 }

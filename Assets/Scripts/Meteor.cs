@@ -30,7 +30,6 @@ public class Meteor : MonoBehaviour
                 //Spawn Smaller Meteors and give them a directional force
                 Invoke("SpawnObject", 0);
                 Invoke("SpawnObject", 0);
-
             }
         }
     }

@@ -138,6 +138,10 @@ MonoBehaviour:
   Points: 20
   Meteor_Prefab: {fileID: 7012195818635103619, guid: 2c7514e254079d94ca980eead8015ecf,
     type: 3}
+  clips:
+  - {fileID: 8300000, guid: aaa91985b9d5cac4f9b0da1b86b8e0a8, type: 3}
+  - {fileID: 8300000, guid: 5741eae00c2cc5e4dadf21d2bcf4d0f7, type: 3}
+  - {fileID: 8300000, guid: 7f6beacaaf627ce4da1067f3bdcb0a81, type: 3}
 --- !u!114 &1260393182725747504
 MonoBehaviour:
   m_ObjectHideFlags: 0

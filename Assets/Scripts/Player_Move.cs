@@ -9,10 +9,13 @@ public class Player_Move : MonoBehaviour
     public GameObject projectile, GameOverCanvas;
     public Transform ShotPoint;
     public float Speed;
+    public AudioClip GameOver, Booster;
     [SerializeField] GameObject HighScore, ScoreBoard;
+    float shotcooldown, AudioTimer;
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        shotcooldown = 1f;
     }
 
     // Update is called once per frame
@@ -22,6 +25,8 @@ public class Player_Move : MonoBehaviour
         Movement();
         //Spawns a projectile with a movememnt script at the selected position
         Shooting();
+        shotcooldown += Time.deltaTime;
+        AudioTimer += Time.deltaTime;
 
     }
     void Movement()
@@ -29,8 +34,16 @@ public class Player_Move : MonoBehaviour
         if (Input.GetButton("Forward"))
         {
             rb.AddForce(transform.right * Speed * Time.deltaTime);
+            if (AudioTimer > 0.1f)
+            {
+                AudioSource.PlayClipAtPoint(Booster, Vector3.zero);
+                AudioTimer = 0f;
+            }
         }
-        if(Input.GetButton("Left"))
+
+        transform.Rotate(0, 0, Input.GetAxisRaw("Horizontal"));
+        /*
+        if (Input.GetButton("Left"))
         {
             transform.Rotate(0, 0, 1);
         }
@@ -38,20 +51,27 @@ public class Player_Move : MonoBehaviour
         {
             transform.Rotate(0, 0, -1);
         }
+        */
     }
     void Shooting()
     {
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && shotcooldown > 0.1f)
         {
             Instantiate(projectile, ShotPoint.position, transform.rotation);
+            GetComponent<AudioSource>().Play();
+            shotcooldown = 0f;
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.gameObject.CompareTag("Meteor"))
         {
+            HighScore.SetActive(true);
+            HighScore.SetActive(false);
             GameOverCanvas.SetActive(true);
             HighScore.GetComponent<HighscoreTable>().AddHighscoreEntry(ScoreBoard.GetComponent<ScoreSystem>().Score, GameObject.FindGameObjectWithTag("NameStore").GetComponent<Name_Store>().Name);
+            GameObject.FindGameObjectWithTag("NameStore").GetComponent<AudioSource>().Stop();
+            AudioSource.PlayClipAtPoint(GameOver, Vector3.zero);
             Destroy(gameObject);
         }
     }

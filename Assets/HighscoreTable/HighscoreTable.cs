@@ -10,12 +10,14 @@ public class HighscoreTable : MonoBehaviour {
     private Transform entryContainer;
     private Transform entryTemplate;
     private List<Transform> highscoreEntryTransformList;
-
-    private void Awake() {
+    private void Awake()
+    {
         entryContainer = transform.Find("Position");
         entryTemplate = entryContainer.Find("ScoresTemplate");
-
         entryTemplate.gameObject.SetActive(false);
+    }
+
+    private void OnEnable() {
 
         string jsonString = PlayerPrefs.GetString("highscoreTable");
         Highscores highscores = JsonUtility.FromJson<Highscores>(jsonString);
@@ -47,18 +49,29 @@ public class HighscoreTable : MonoBehaviour {
                 }
             }
         }
-
+        foreach (GameObject go in GameObject.FindGameObjectsWithTag("Template"))
+        {
+            Destroy(go);
+        }
+            
         highscoreEntryTransformList = new List<Transform>();
         foreach (HighscoreEntry highscoreEntry in highscores.highscoreEntryList) {
             CreateHighscoreEntryTransform(highscoreEntry, entryContainer, highscoreEntryTransformList);
         }
         if (highscores.highscoreEntryList.Count > 10)
         {
-            highscores.highscoreEntryList.Remove(highscores.highscoreEntryList[10]);
+            for (int i = 10; i < highscores.highscoreEntryList.Count; i++)
+            {
+                highscores.highscoreEntryList.Remove(highscores.highscoreEntryList[i]);
+            }
             string json = JsonUtility.ToJson(highscores);
             PlayerPrefs.SetString("highscoreTable", json);
             PlayerPrefs.Save();
         }
+    }
+    void Sort()
+    {
+
     }
 
     private void CreateHighscoreEntryTransform(HighscoreEntry highscoreEntry, Transform container, List<Transform> transformList) {

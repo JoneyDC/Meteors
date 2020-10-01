@@ -9,6 +9,7 @@ TagManager:
   - HighScore
   - ScoreSave
   - NameStore
+  - Template
   layers:
   - Default
   - TransparentFX

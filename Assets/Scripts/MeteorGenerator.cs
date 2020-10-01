@@ -8,17 +8,19 @@ public class MeteorGenerator : MonoBehaviour
     public float StartingSpawnTime;
     public float StartingIntensity;
     public int MaxMeteors;
+    public bool ChangePitch;
+    public AudioClip FinalForm;
     [Space]
     public List<GameObject> Meteor;
 
     float intensity,spawnTimer;
     bool IntensityStablisation, MaxIntensity;
+    AudioSource Audio;
     void Start()
     {
-
         intensity = StartingIntensity;
         spawnTimer = StartingSpawnTime / intensity;
-        
+        Audio = GameObject.FindGameObjectWithTag("NameStore").GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -27,6 +29,11 @@ public class MeteorGenerator : MonoBehaviour
         if (GameObject.FindGameObjectsWithTag("Meteor").Length < MaxMeteors)
         {
             spawnTimer += Time.deltaTime;
+            if(FinalForm!=null)
+            {
+                Audio.clip = FinalForm;
+                Audio.Play();
+            }
         }
         if (!MaxIntensity)
         {
@@ -42,6 +49,8 @@ public class MeteorGenerator : MonoBehaviour
         {
             MaxIntensity = true;
         }
+        if(ChangePitch)
+         Audio.pitch = Audio.pitch + intensity * 0.00001f; 
     }
     private void FixedUpdate()
     {

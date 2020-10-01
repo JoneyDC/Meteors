@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4931907969555965153}
   - component: {fileID: 4954315029932755201}
   - component: {fileID: 1374612975068569297}
+  - component: {fileID: 862533525752572586}
   m_Layer: 10
   m_Name: Projectile
   m_TagString: Untagged
@@ -97,6 +98,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Speed: 1000
+  Duration: 1
+  clip:
+  - {fileID: 8300000, guid: 5f68d34e78f981b4aab19204138a0569, type: 3}
+  - {fileID: 8300000, guid: 52efb2a9fbd21e2499766069f12c2789, type: 3}
+  - {fileID: 8300000, guid: 4493b39448cd61e49ab310e2960ef62e, type: 3}
 --- !u!50 &4954315029932755201
 Rigidbody2D:
   serializedVersion: 4
@@ -134,3 +140,16 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &862533525752572586
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5179627782281687784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb92e16a8e343dc429af47f2d1def4cd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buffer: 1
