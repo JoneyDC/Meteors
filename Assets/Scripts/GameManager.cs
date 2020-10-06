@@ -31,7 +31,10 @@ public class GameManager : MonoBehaviour
     public void SetName()
     {
         GameObject.FindGameObjectWithTag("NameStore").GetComponent<Name_Store>().Name = GameObject.FindGameObjectWithTag("Finish").GetComponent<Text>().text;
-        StartGame();
+        if (GameObject.FindGameObjectWithTag("NameStore").GetComponent<Name_Store>().Name != "")
+        {
+            StartGame();
+        }
     }
     public void Quit()
     {

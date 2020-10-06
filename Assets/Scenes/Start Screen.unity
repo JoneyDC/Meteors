@@ -169,7 +169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
+  m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
@@ -189,7 +189,7 @@ Canvas:
   m_Enabled: 1
   serializedVersion: 3
   m_RenderMode: 0
-  m_Camera: {fileID: 0}
+  m_Camera: {fileID: 1409512969}
   m_PlaneDistance: 100
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
@@ -1828,6 +1828,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Text
       value: ------
+      objectReference: {fileID: 0}
+    - target: {fileID: 3387723007943844668, guid: e4eb8ea9ac7830a4b9b22d821c5c6c05,
+        type: 3}
+      propertyPath: m_ContentType
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3387723007943844668, guid: e4eb8ea9ac7830a4b9b22d821c5c6c05,
+        type: 3}
+      propertyPath: m_KeyboardType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3387723007943844668, guid: e4eb8ea9ac7830a4b9b22d821c5c6c05,
+        type: 3}
+      propertyPath: m_CharacterValidation
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 3387723007943844674, guid: e4eb8ea9ac7830a4b9b22d821c5c6c05,
         type: 3}
