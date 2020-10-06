@@ -1,1 +1,1 @@
-Game
+Build Game in Android, To switch to PC controls, Open Project in Unity> Go to the Game Scene, Press on the Player > in the Inspector uncheak the Mobile bool in Player_Move > Go to Build settings > Change build mode to Windows and build the game.
